@@ -31,8 +31,15 @@ router.post('/', auth(['donor']), async (req, res) => {
 router.get('/', auth(), async (req, res) => {
   try {
     let donations;
-    if (req.user.role === 'ngo')
-      donations = await Donation.find({ status: 'pending' });
+    if (req.user.role === 'ngo') {
+      donations = await Donation.find({
+        $or: [
+          { status: 'pending' },
+          { status: 'accepted', 'acceptedBy.id': req.user.id },
+          { status: 'picked_up', 'acceptedBy.id': req.user.id }
+        ]
+      });
+    }
     else
       donations = await Donation.find({ donorId: req.user.id });
     res.json(donations);

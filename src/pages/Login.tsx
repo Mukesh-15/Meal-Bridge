@@ -41,17 +41,6 @@ const Login = () => {
     }
   };
 
-  // Demo account buttons
-  const loginAsDonor = () => {
-    setEmail('info@greengarden.com');
-    setPassword('password');
-  };
-
-  const loginAsNgo = () => {
-    setEmail('contact@foodforall.org');
-    setPassword('password');
-  };
-
   return (
     <div className="min-h-[80vh] flex items-center justify-center">
       <Card className="w-full max-w-md">
@@ -98,29 +87,7 @@ const Login = () => {
               />
             </div>
             
-            <div className="space-y-2 pt-2">
-              <div className="text-sm text-center text-muted-foreground mb-2">
-                Demo accounts:
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={loginAsDonor}
-                >
-                  Login as Donor
-                </Button>
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={loginAsNgo}
-                >
-                  Login as NGO
-                </Button>
-              </div>
-            </div>
+            
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <Button className="w-full" type="submit" disabled={isLoading}>
